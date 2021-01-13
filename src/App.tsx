@@ -1,3 +1,7 @@
+import {
+  BsPlusCircle as PlusIcon,
+} from 'react-icons/bs';
+
 const incomeList = [
   { desc: 'Salary', value: 999 },
   { desc: 'Lottery', value: 10000 },
@@ -33,18 +37,30 @@ function App() {
           </div>
         </div>
       </div>
-      
-      <div>
-        <form onSubmit={(e) => e.preventDefault()}>
-          <select>
-            <option>+</option>
-            <option>-</option>
+
+      <div className="middle">
+        <form className="add-form" onSubmit={(e) => e.preventDefault()}>
+          <select className="form-control type">
+            <option>➕</option>
+            <option>➖</option>
           </select>
-          <input type="text" placeholder="Add description" />
-          <input type="number" placeholder="Value" />
-          <input type="submit" value="✅" />
+          <input
+            type="text"
+            className="form-control description"
+            placeholder="Add description"
+          />
+          <input
+            type="number"
+            className="form-control value"
+            placeholder="Value"
+          />
+
+          <button className="btn submit-btn">
+            <PlusIcon />
+          </button>
         </form>
       </div>
+
       <div>
         <div>
           <h3>Income</h3>
