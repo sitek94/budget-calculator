@@ -1,5 +1,6 @@
 import {
   BsPlusCircle as PlusIcon,
+  BsXCircle as CrossIcon,
 } from 'react-icons/bs';
 
 const incomeList = [
@@ -61,26 +62,42 @@ function App() {
         </form>
       </div>
 
-      <div>
-        <div>
-          <h3>Income</h3>
-          <ul>
-            {incomeList.map(({ desc, value }) => (
-              <li>
-                <span>{desc}</span> ------------ <span>{value}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h3>Expenses</h3>
-          <ul>
-            {expensesList.map(({ desc, value }) => (
-              <li>
-                <span>{desc}</span> ------------ <span>{value}</span>
-              </li>
-            ))}
-          </ul>
+      <div className="bottom">
+        <div className="transactions">
+          <div className="income">
+            <h3 className="label">Income</h3>
+            <ul className="list">
+              {incomeList.map(({ desc, value }) => (
+                <li className="item">
+                  <div>{desc}</div>
+                  <div className="right-box">
+                    <div className="value">{value}</div>
+                    <div className="percentage">35%</div>
+                    <button className="btn delete-btn">
+                      <CrossIcon />
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="expenses">
+            <h3 className="label">Expenses</h3>
+            <ul className="list">
+              {expensesList.map(({ desc, value }) => (
+                <li className="item">
+                  <div>{desc}</div>
+                  <div className="right-box">
+                    <div className="value">{value}</div>
+                    <div className="percentage">20%</div>
+                    <button className="btn delete-btn">
+                      <CrossIcon />
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
