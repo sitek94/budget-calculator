@@ -1,0 +1,122 @@
+/* ================================= */
+/* VARIABLES */
+/* ================================= */
+
+:root {
+  --border-radius: 8px;
+  --red: #e45735;
+  --red-rgb: 228, 87, 53;
+  --green: #019245;
+  --green-rgb: 1, 146, 69;
+  --gray-extra-light: #f6f6f6;
+  --gray-light: #f8f8f8;
+  --gray: #ccc;
+  --focus-color: var(--green);
+}
+
+/* ================================= */
+/* GENERAL */
+/* ================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+  font-family: 'Roboto', sans-serif;
+  color: #555;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+/* ================================= */
+/* LAYOUT */
+/* ================================= */
+
+.container {
+  min-height: 100vh;
+
+  /* TOP */
+  .top {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url(background.jpg);
+    background-position: center;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* ================================= */
+/* BUDGET */
+/* ================================= */
+
+.budget {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5rem;
+
+  /* TITLE */
+  .title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  /* TOTAL */
+  .total {
+    font-size: 4.6rem;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ITEM */
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem;
+    border-radius: var(--border-radius);
+    font-size: 1.8rem;
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    &.income {
+      background-color: rgba(var(--green-rgb), 0.8);
+    }
+
+    &.expenses {
+      background-color: rgba(var(--red-rgb), 0.8);
+    }
+
+    /* RIGHT BOX */
+    .right-box {
+      display: flex;
+      align-items: center;
+    }
+
+    /* VALUE */
+    .value {
+      margin-right: 1rem;
+    }
+
+    /* PERCENTAGE */
+    .percentage {
+      font-size: 1.6rem;
+      padding: 0.5rem;
+      border-radius: var(--border-radius);
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
+}
