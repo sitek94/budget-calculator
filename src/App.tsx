@@ -5,6 +5,7 @@ import {
 
 import Layout, { Top, Middle, Bottom } from 'components/layout';
 import Display from 'components/display';
+import Form from 'components/form';
 
 const incomeList = [
   { desc: 'Salary', value: 999 },
@@ -24,26 +25,7 @@ function App() {
       </Top>
 
       <Middle>
-        <form className="add-form" onSubmit={(e) => e.preventDefault()}>
-          <select className="form-control type">
-            <option>➕</option>
-            <option>➖</option>
-          </select>
-          <input
-            type="text"
-            className="form-control description"
-            placeholder="Add description"
-          />
-          <input
-            type="number"
-            className="form-control value"
-            placeholder="Value"
-          />
-
-          <button className="btn submit-btn">
-            <PlusIcon />
-          </button>
-        </form>
+        <Form onSubmit={(formProps) => console.log(formProps)} />
       </Middle>
 
       <Bottom>

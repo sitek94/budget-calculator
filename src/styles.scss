@@ -51,59 +51,6 @@ body {
 }
 
 /* ================================= */
-/* ADD FORM */
-/* ================================= */
-
-.add-form {
-  max-width: 60rem;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-
-  /* FORM CONTROL */
-  .form-control {
-    color: inherit;
-    padding: 1.4rem;
-    border: 1px solid var(--gray);
-    border-radius: var(--border-radius);
-    margin-right: 1rem;
-    transition: border 300ms;
-    font-size: 1.4rem;
-
-    &:focus {
-      outline: none;
-      border: 1px solid var(--green);
-    }
-  }
-
-  .type {
-    font-weight: bold;
-  }
-
-  .value {
-    width: 100px;
-  }
-  .description {
-    flex: 1;
-  }
-
-  /* SUBMIT BUTTON */
-  .submit-btn {
-    padding: 0 0.8rem;
-    font-size: 3rem;
-    border: 1px solid transparent;
-
-    svg {
-      fill: var(--focus-color);
-    }
-
-    &:focus {
-      border: 1px solid var(--focus-color);
-    }
-  }
-}
-
-/* ================================= */
 /* TRANSACTIONS */
 /* ================================= */
 
