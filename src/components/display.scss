@@ -1,0 +1,67 @@
+.display {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5rem;
+
+  /* TITLE */
+  .title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  /* BUDGET */
+  .budget {
+    font-size: 4.6rem;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ITEM */
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem;
+    border-radius: var(--border-radius);
+    font-size: 1.8rem;
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    &.income {
+      background-color: rgba(var(--green-rgb), 0.8);
+
+      .percentage {
+        visibility: hidden;
+      }
+    }
+
+    &.expenses {
+      background-color: rgba(var(--red-rgb), 0.8);
+    }
+
+    /* RIGHT BOX */
+    .right-box {
+      display: flex;
+      align-items: center;
+    }
+
+    /* VALUE */
+    .value {
+      margin-right: 1rem;
+    }
+
+    /* PERCENTAGE */
+    .percentage {
+      width: 3.4rem;
+      font-size: 1.3rem;
+      padding: 0.5rem;
+      border-radius: var(--border-radius);
+      background-color: rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+  }
+}

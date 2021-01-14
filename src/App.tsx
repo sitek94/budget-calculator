@@ -2,7 +2,9 @@ import {
   BsPlusCircle as PlusIcon,
   BsXCircle as CrossIcon,
 } from 'react-icons/bs';
+
 import Layout, { Top, Middle, Bottom } from 'components/layout';
+import Display from 'components/display';
 
 const incomeList = [
   { desc: 'Salary', value: 999 },
@@ -18,26 +20,7 @@ function App() {
   return (
     <Layout>
       <Top>
-        <div className="budget">
-          <h2 className="title">Budget available in January 2021:</h2>
-          <h1 className="total">$12321321</h1>
-
-          <div className="income item">
-            <div className="label">Income</div>
-            <div className="right-box">
-              <div className="value">124124</div>
-              <div className="percentage">44%</div>
-            </div>
-          </div>
-
-          <div className="expenses item">
-            <div className="label">Expenses</div>
-            <div className="right-box">
-              <div className="value">124124</div>
-              <div className="percentage">44%</div>
-            </div>
-          </div>
-        </div>
+        <Display budget={10000} income={100} expenses={0} />
       </Top>
 
       <Middle>
