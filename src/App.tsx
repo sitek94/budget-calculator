@@ -2,6 +2,7 @@ import {
   BsPlusCircle as PlusIcon,
   BsXCircle as CrossIcon,
 } from 'react-icons/bs';
+import Layout, { Top, Middle, Bottom } from 'components/layout';
 
 const incomeList = [
   { desc: 'Salary', value: 999 },
@@ -15,8 +16,8 @@ const expensesList = [
 
 function App() {
   return (
-    <div className="container">
-      <div className="top">
+    <Layout>
+      <Top>
         <div className="budget">
           <h2 className="title">Budget available in January 2021:</h2>
           <h1 className="total">$12321321</h1>
@@ -37,9 +38,9 @@ function App() {
             </div>
           </div>
         </div>
-      </div>
+      </Top>
 
-      <div className="middle">
+      <Middle>
         <form className="add-form" onSubmit={(e) => e.preventDefault()}>
           <select className="form-control type">
             <option>➕</option>
@@ -60,9 +61,9 @@ function App() {
             <PlusIcon />
           </button>
         </form>
-      </div>
+      </Middle>
 
-      <div className="bottom">
+      <Bottom>
         <div className="transactions">
           <div className="income">
             <h3 className="label">Income</h3>
@@ -99,8 +100,8 @@ function App() {
             </ul>
           </div>
         </div>
-      </div>
-    </div>
+      </Bottom>
+    </Layout>
   );
 }
 

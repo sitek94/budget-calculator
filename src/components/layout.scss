@@ -1,0 +1,22 @@
+.layout {
+  min-height: 100vh;
+
+  /* TOP */
+  .top {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url(../images/background.jpg);
+    background-position: center;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* MIDDLE */
+  .middle {
+    padding: 2.5rem;
+    background-color: var(--gray-light);
+    border-bottom: 1px solid var(--gray);
+  }
+}
