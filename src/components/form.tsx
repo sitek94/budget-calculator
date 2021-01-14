@@ -38,6 +38,7 @@ function Form({ onSubmit }: Props) {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <select
+        data-testid="select-type"
         className="form-control type"
         value={type}
         onChange={(e) => setType(e.target.value)}
@@ -46,6 +47,7 @@ function Form({ onSubmit }: Props) {
         <option value="expense">➖</option>
       </select>
       <input
+        data-testid="input-description"
         type="text"
         className="form-control description"
         placeholder="Add description"
@@ -54,6 +56,7 @@ function Form({ onSubmit }: Props) {
         ref={descriptionRef}
       />
       <input
+        data-testid="input-value"
         type="number"
         className="form-control value"
         placeholder="Value"
@@ -61,7 +64,7 @@ function Form({ onSubmit }: Props) {
         onChange={(e) => setValue(e.target.value)}
       />
 
-      <button type="submit" className="btn submit-btn">
+      <button data-testid="submit-btn" type="submit" className="btn submit-btn">
         <PlusIcon />
       </button>
     </form>
