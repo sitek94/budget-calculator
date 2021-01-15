@@ -2,7 +2,8 @@ import { TransactionType } from 'types';
 import Layout, { Top, Middle, Bottom } from 'components/layout';
 import Display from 'components/display';
 import Form from 'components/form';
-import Transactions from 'components/transactions';
+import List from 'components/list';
+import Label from 'components/label';
 
 const transactionList: TransactionType[] = [
   { type: 'income', description: 'Salary', value: 999 },
@@ -12,6 +13,9 @@ const transactionList: TransactionType[] = [
 ];
 
 function App() {
+  const incomeList = transactionList.filter((t) => t.type === 'income');
+  const expensesList = transactionList.filter((t) => t.type === 'expense');
+
   return (
     <Layout>
       <Top>
@@ -23,7 +27,14 @@ function App() {
       </Middle>
 
       <Bottom>
-        <Transactions list={transactionList} />
+        <div className="income">
+          <Label>Income</Label>
+          <List list={incomeList} />
+        </div>
+        <div className="expenses">
+          <Label>Expenses</Label>
+          <List list={expensesList} />
+        </div>
       </Bottom>
     </Layout>
   );
