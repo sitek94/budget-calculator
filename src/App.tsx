@@ -1,20 +1,14 @@
-import {
-  BsPlusCircle as PlusIcon,
-  BsXCircle as CrossIcon,
-} from 'react-icons/bs';
-
+import { TransactionType } from 'types';
 import Layout, { Top, Middle, Bottom } from 'components/layout';
 import Display from 'components/display';
 import Form from 'components/form';
+import Transactions from 'components/transactions';
 
-const incomeList = [
-  { desc: 'Salary', value: 999 },
-  { desc: 'Lottery', value: 10000 },
-];
-
-const expensesList = [
-  { desc: 'Party', value: 1111 },
-  { desc: 'Cyberpunk', value: 2 },
+const transactionList: TransactionType[] = [
+  { type: 'income', description: 'Salary', value: 999 },
+  { type: 'income', description: 'Lottery', value: 10000 },
+  { type: 'expense', description: 'Party', value: 1111 },
+  { type: 'expense', description: 'Cyberpunk', value: 2 },
 ];
 
 function App() {
@@ -29,42 +23,7 @@ function App() {
       </Middle>
 
       <Bottom>
-        <div className="transactions">
-          <div className="income">
-            <h3 className="label">Income</h3>
-            <ul className="list">
-              {incomeList.map(({ desc, value }) => (
-                <li className="item">
-                  <div>{desc}</div>
-                  <div className="right-box">
-                    <div className="value">{value}</div>
-                    <div className="percentage">35%</div>
-                    <button className="btn delete-btn">
-                      <CrossIcon />
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="expenses">
-            <h3 className="label">Expenses</h3>
-            <ul className="list">
-              {expensesList.map(({ desc, value }) => (
-                <li className="item">
-                  <div>{desc}</div>
-                  <div className="right-box">
-                    <div className="value">{value}</div>
-                    <div className="percentage">20%</div>
-                    <button className="btn delete-btn">
-                      <CrossIcon />
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <Transactions list={transactionList} />
       </Bottom>
     </Layout>
   );

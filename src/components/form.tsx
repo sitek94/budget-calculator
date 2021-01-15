@@ -1,15 +1,10 @@
 import * as React from 'react';
 import { BsPlusCircle as PlusIcon } from 'react-icons/bs';
+import { TransactionType } from 'types';
 import './form.scss';
 
-type FormProps = {
-  type: 'income' | 'expense';
-  description: string;
-  value: number;
-};
-
 type Props = {
-  onSubmit: ({ type, description, value }: FormProps) => void;
+  onSubmit: ({ type, description, value }: TransactionType) => void;
 };
 
 function Form({ onSubmit }: Props) {
@@ -23,7 +18,7 @@ function Form({ onSubmit }: Props) {
     e.preventDefault();
 
     // Submit the form
-    onSubmit({ type, description, value: Number(value) } as FormProps);
+    onSubmit({ type, description, value: Number(value) } as TransactionType);
 
     // Reset form values
     setDescription('');
