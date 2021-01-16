@@ -29,11 +29,11 @@ function App() {
       <Bottom>
         <div className="income">
           <Label>Income</Label>
-          <List list={incomeList} />
+          <List type="income" list={incomeList} />
         </div>
         <div className="expenses">
           <Label>Expenses</Label>
-          <List list={expensesList} />
+          <List type="expenses" list={expensesList} budget={0} />
         </div>
       </Bottom>
     </Layout>
