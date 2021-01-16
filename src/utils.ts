@@ -4,3 +4,7 @@ export function currencyFormat(number: number) {
     currency: 'USD',
   }).format(number);
 }
+
+export function percentFormat(dividend: number, divisor: number) {
+  return `${Math.round((dividend / divisor) * 100)}%`;
+}

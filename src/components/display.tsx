@@ -1,5 +1,5 @@
 import './display.scss';
-import { currencyFormat } from 'utils';
+import { currencyFormat, percentFormat } from 'utils';
 
 type Props = {
   budget: number;
@@ -12,7 +12,7 @@ function Display({ budget, income, expenses }: Props) {
   const year = new Date().getFullYear();
 
   const budgetSign = budget > 0 ? '+ ' : budget < 0 ? '- ' : '';
-  const percentage = Math.round((expenses / budget) * 100);
+  const percentage = percentFormat(expenses, budget);
 
   return (
     <div className="display">
@@ -34,7 +34,7 @@ function Display({ budget, income, expenses }: Props) {
         <div className="right-box">
           <div className="value">- {currencyFormat(expenses)}</div>
           <div className="percentage">
-            {percentage === 0 ? '---' : `${percentage}%`}
+            {percentage === '0%' ? '---' : percentage}
           </div>
         </div>
       </div>
