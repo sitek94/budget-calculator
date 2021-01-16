@@ -1,5 +1,5 @@
 import './display.scss';
-import { format } from 'utils';
+import { currencyFormat } from 'utils';
 
 type Props = {
   budget: number;
@@ -19,12 +19,12 @@ function Display({ budget, income, expenses }: Props) {
       <h2 className="title">
         Budget available in {month} {year}:
       </h2>
-      <h1 className="budget">{budgetSign}{format(budget)}</h1>
+      <h1 className="budget">{budgetSign}{currencyFormat(budget)}</h1>
 
       <div className="income item">
         <div className="label">Income</div>
         <div className="right-box">
-          <div className="value">+ {format(income)}</div>
+          <div className="value">+ {currencyFormat(income)}</div>
           <div className="percentage">&nbsp;</div>
         </div>
       </div>
@@ -32,7 +32,7 @@ function Display({ budget, income, expenses }: Props) {
       <div className="expenses item">
         <div className="label">Expenses</div>
         <div className="right-box">
-          <div className="value">- {format(expenses)}</div>
+          <div className="value">- {currencyFormat(expenses)}</div>
           <div className="percentage">
             {percentage === 0 ? '---' : `${percentage}%`}
           </div>
