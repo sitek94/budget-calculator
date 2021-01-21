@@ -16,10 +16,14 @@ function App() {
   const incomeList = transactionList.filter((t) => t.type === 'income');
   const expensesList = transactionList.filter((t) => t.type === 'expense');
 
+  const budget = 10000;
+  const income = 1000;
+  const expenses = 500;
+
   return (
     <Layout>
       <Top>
-        <Display budget={10000} income={100} expenses={0} />
+        <Display budget={budget} income={income} expenses={expenses} />
       </Top>
 
       <Middle>
@@ -33,7 +37,7 @@ function App() {
         </div>
         <div className="expenses">
           <Label>Expenses</Label>
-          <List type="expenses" list={expensesList} budget={0} />
+          <List type="expenses" list={expensesList} budget={10000} />
         </div>
       </Bottom>
     </Layout>

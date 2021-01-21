@@ -16,7 +16,7 @@ function List({ list, type, budget }: Props) {
   const renderPercentage = (value: number) =>
     budget !== undefined ? (
       <div data-testid={`test-${value}`} className="percentage">
-        {budget === 0 ? '---' : percentFormat(value, budget)}
+        {budget === 0 ? '---' : percentFormat(value / budget)}
       </div>
     ) : null;
 

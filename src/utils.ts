@@ -5,6 +5,9 @@ export function currencyFormat(number: number) {
   }).format(number);
 }
 
-export function percentFormat(dividend: number, divisor: number) {
-  return `${Math.round((dividend / divisor) * 100)}%`;
+export function percentFormat(number: number) {
+  return Number(number).toLocaleString(undefined, {
+    style: 'percent',
+    minimumFractionDigits: 0,
+  });
 }
