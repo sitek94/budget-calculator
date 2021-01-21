@@ -4,14 +4,14 @@
   padding: 5rem;
 
   /* TITLE */
-  .title {
+  &__title {
     font-size: 2.5rem;
     font-weight: 300;
     margin-bottom: 1.5rem;
   }
 
   /* BUDGET */
-  .budget {
+  &__budget {
     font-size: 4.6rem;
     font-weight: 300;
     text-align: center;
@@ -19,7 +19,7 @@
   }
 
   /* ITEM */
-  .item {
+  &__item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -31,27 +31,15 @@
       margin-bottom: 1rem;
     }
 
-    &.income {
-      background-color: rgba(var(--green-rgb), 0.8);
-
-      .percentage {
-        visibility: hidden;
-      }
-    }
-
-    &.expenses {
-      background-color: rgba(var(--red-rgb), 0.8);
-    }
-
-    /* RIGHT BOX */
-    .right-box {
-      display: flex;
-      align-items: center;
-    }
-
     /* VALUE */
     .value {
       margin-right: 1rem;
+    }
+
+    /* RIGHT BOX */
+    &__right-box {
+      display: flex;
+      align-items: center;
     }
 
     /* PERCENTAGE */
@@ -63,5 +51,18 @@
       background-color: rgba(0, 0, 0, 0.2);
       text-align: center;
     }
+  }
+
+  /* COLORS AND PERCENTAGE VISIBILITY */
+  &__income {
+    background-color: rgba(var(--green-rgb), 0.8);
+
+    .percentage {
+      visibility: hidden;
+    }
+  }
+
+  &__expenses {
+    background-color: rgba(var(--red-rgb), 0.8);
   }
 }
