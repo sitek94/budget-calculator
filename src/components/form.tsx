@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { BsPlusCircle as PlusIcon } from 'react-icons/bs';
 import { TransactionType } from 'types';
+import { nanoid } from 'nanoid';
 import './form.scss';
 
 type FormProps = {
@@ -19,7 +20,12 @@ function Form({ onSubmit }: FormProps) {
     if (!descriptionRef.current) return;
 
     // Submit the form
-    onSubmit({ type, description, value: Number(value) } as TransactionType);
+    onSubmit({
+      id: nanoid(),
+      type,
+      description,
+      value: Number(value),
+    } as TransactionType);
 
     // Reset form values and set focus on description
     setDescription('');

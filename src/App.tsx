@@ -6,10 +6,10 @@ import List from 'components/list';
 import Label from 'components/label';
 
 const transactionList: TransactionType[] = [
-  { type: 'income', description: 'Salary', value: 999 },
-  { type: 'income', description: 'Lottery', value: 10000 },
-  { type: 'expense', description: 'Party', value: 1111 },
-  { type: 'expense', description: 'Cyberpunk', value: 2 },
+  { id: '1', type: 'income', description: 'Salary', value: 999 },
+  { id: '2', type: 'income', description: 'Lottery', value: 10000 },
+  { id: '3', type: 'expense', description: 'Party', value: 1111 },
+  { id: '4', type: 'expense', description: 'Cyberpunk', value: 2 },
 ];
 
 function App() {

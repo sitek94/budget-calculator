@@ -1,7 +1,6 @@
 import { BsXCircle as CrossIcon } from 'react-icons/bs';
 import { TransactionType } from 'types';
 import { currencyFormat, percentFormat } from 'utils';
-import { nanoid } from 'nanoid';
 import './list.scss';
 
 type Props = {
@@ -11,7 +10,6 @@ type Props = {
 };
 
 function List({ list, type, budget }: Props) {
-
   // Render `percentage` if there is `budget` prop
   const renderPercentage = (value: number) =>
     budget !== undefined ? (
@@ -30,8 +28,8 @@ function List({ list, type, budget }: Props) {
 
   return (
     <ul className="list">
-      {list.map(({ description, value }) => (
-        <li key={nanoid()} className="item">
+      {list.map(({ id, description, value }) => (
+        <li key={id} className="item">
           <div>{description}</div>
           <div className="right-box">
             {renderValue(value)}
