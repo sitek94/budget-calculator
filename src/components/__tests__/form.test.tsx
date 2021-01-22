@@ -1,6 +1,13 @@
 import * as React from 'react';
-import Form from 'components/form';
 import { render, screen, fireEvent } from '@testing-library/react';
+import Form from 'components/form';
+
+jest.mock('nanoid', () => ({
+  nanoid: () => {
+    let value = 0;
+    return ++value;
+  },
+}));
 
 describe('<Form>', () => {
   it('renders correctly', () => {
@@ -34,6 +41,7 @@ describe('<Form>', () => {
 
     // `onSubmit` should be called with the values from the form
     expect(onSubmit).toBeCalledWith({
+      id: 1,
       type: 'expense',
       description: 'Ticket to the Moon',
       value: 9.99,

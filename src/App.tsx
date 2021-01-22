@@ -31,12 +31,11 @@ function App() {
 
   const income = sum(incomeList.map((t) => t.value));
   const expenses = sum(expensesList.map((t) => t.value));
-  const budget = income - expenses;
 
   return (
     <Layout>
       <Top>
-        <Display budget={budget} income={income} expenses={expenses} />
+        <Display income={income} expenses={expenses} />
       </Top>
 
       <Middle>

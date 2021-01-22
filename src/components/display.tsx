@@ -1,16 +1,16 @@
 import './display.scss';
 import { currencyFormat, percentFormat } from 'utils';
 
-type Props = {
-  budget: number;
+type DisplayProps = {
   income: number;
   expenses: number;
 };
 
-function Display({ budget, income, expenses }: Props) {
+function Display({ income, expenses }: DisplayProps) {
   const month = new Date().toLocaleString('default', { month: 'long' });
   const year = new Date().getFullYear();
 
+  const budget = income - expenses;
   const budgetSign = budget > 0 ? '+ ' : budget < 0 ? '- ' : '';
   const percentage = budget > 0 ? percentFormat(expenses / income) : null;
 

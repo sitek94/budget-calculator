@@ -3,18 +3,20 @@ import { render } from '@testing-library/react';
 import { TransactionType } from 'types';
 
 const expenseList: TransactionType[] = [
-  { type: 'expense', description: 'Party', value: 300 },
-  { type: 'expense', description: 'Cyberpunk', value: 200 },
+  { id: 'a', type: 'expense', description: 'Party', value: 300 },
+  { id: 'b', type: 'expense', description: 'Cyberpunk', value: 200 },
 ];
 
 const incomeList: TransactionType[] = [
-  { type: 'income', description: 'Salary', value: 999 },
-  { type: 'income', description: 'Lottery', value: 10000 },
+  { id: 'a', type: 'income', description: 'Salary', value: 999 },
+  { id: 'b', type: 'income', description: 'Lottery', value: 10000 },
 ];
 
 describe('<List>', () => {
   it('renders correctly when no budget prop', () => {
-    const { getByText } = render(<List type="income" list={incomeList} />);
+    const { getByText } = render(
+      <List type="income" list={incomeList} onDeleteClick={() => {}} />
+    );
 
     expect(getByText(/salary/i)).toBeInTheDocument();
     expect(getByText(/lottery/i)).toBeInTheDocument();
@@ -23,7 +25,12 @@ describe('<List>', () => {
 
   it('renders correctly with budget prop', () => {
     const { getByText } = render(
-      <List type="expenses" list={expenseList} budget={1000} />
+      <List
+        type="expenses"
+        list={expenseList}
+        income={1000}
+        onDeleteClick={() => {}}
+      />
     );
 
     expect(getByText(/party/i)).toBeInTheDocument();
@@ -35,14 +42,18 @@ describe('<List>', () => {
   });
 
   it('renders correctly when budget is equal to zero', () => {
-    const { getByText, getByTestId } = render(
-      <List type="expenses" list={expenseList} budget={0} />
+    const { getByText } = render(
+      <List
+        type="expenses"
+        list={expenseList}
+        income={0}
+        onDeleteClick={() => {}}
+      />
     );
 
     expect(getByText(/party/i)).toBeInTheDocument();
     expect(getByText(/cyberpunk/i)).toBeInTheDocument();
     expect(getByText('- $300.00')).toBeInTheDocument();
     expect(getByText('- $200.00')).toBeInTheDocument();
-    expect(getByTestId('test-300')).toHaveTextContent('---');
   });
 });

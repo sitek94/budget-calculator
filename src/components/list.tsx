@@ -14,7 +14,7 @@ function List({ list, type, income, onDeleteClick }: Props) {
   // Render `percentage` if there is `income` prop
   const renderPercentage = (value: number) =>
     income !== undefined ? (
-      <div data-testid={`test-${value}`} className="percentage">
+      <div className="percentage">
         {income === 0 ? '---' : percentFormat(value / income)}
       </div>
     ) : null;

@@ -4,21 +4,21 @@ import { render, screen } from '@testing-library/react';
 describe('<Display>', () => {
   describe('when `budget > 0`', () => {
     it('displays budget, income and expenses correctly', () => {
-      render(<Display budget={1000} income={250} expenses={500} />);
+      render(<Display income={1000} expenses={250} />);
 
+      expect(screen.getByText('+ $750.00')).toBeInTheDocument();
       expect(screen.getByText('+ $1,000.00')).toBeInTheDocument();
-      expect(screen.getByText('+ $250.00')).toBeInTheDocument();
-      expect(screen.getByText('- $500.00')).toBeInTheDocument();
-      expect(screen.getByText('50%')).toBeInTheDocument();
+      expect(screen.getByText('- $250.00')).toBeInTheDocument();
+      expect(screen.getByText('25%')).toBeInTheDocument();
     });
   });
 
   describe('when `budget === 0`', () => {
     it('displays budget, income and expenses correctly', () => {
-      render(<Display budget={0} income={250} expenses={500} />);
+      render(<Display income={500} expenses={500} />);
 
       expect(screen.getByText('$0.00')).toBeInTheDocument();
-      expect(screen.getByText('+ $250.00')).toBeInTheDocument();
+      expect(screen.getByText('+ $500.00')).toBeInTheDocument();
       expect(screen.getByText('- $500.00')).toBeInTheDocument();
       expect(screen.getByText(/---/)).toBeInTheDocument();
     });
@@ -26,9 +26,9 @@ describe('<Display>', () => {
 
   describe('when `budget < 0`', () => {
     it('displays budget, income and expenses correctly', () => {
-      render(<Display budget={-1000} income={250} expenses={500} />);
+      render(<Display income={250} expenses={500} />);
 
-      expect(screen.getByText('- $1,000.00')).toBeInTheDocument();
+      expect(screen.getByText('- $250.00')).toBeInTheDocument();
       expect(screen.getByText('+ $250.00')).toBeInTheDocument();
       expect(screen.getByText('- $500.00')).toBeInTheDocument();
       expect(screen.getByText(/---/)).toBeInTheDocument();
