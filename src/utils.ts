@@ -11,3 +11,7 @@ export function percentFormat(number: number) {
     minimumFractionDigits: 0,
   });
 }
+
+export function sum(array: number[]) {
+  return array.reduce((a, b) => a + b, 0);
+}
