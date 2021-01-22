@@ -1,12 +1,8 @@
 import * as React from 'react';
 import Form from 'components/form';
-import { render, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 describe('<Form>', () => {
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
-
   it('renders correctly', () => {
     const { getByPlaceholderText } = render(<Form onSubmit={() => {}} />);
 
@@ -17,117 +13,55 @@ describe('<Form>', () => {
   it('calls the onSubmit function with the form values', () => {
     const onSubmit = jest.fn();
 
-    const { getByTestId } = render(<Form onSubmit={onSubmit} />);
+    render(<Form onSubmit={onSubmit} />);
 
-    fireEvent.change(getByTestId('select-type'), {
-      target: { value: 'expense' },
-    });
-    fireEvent.change(getByTestId('input-description'), {
-      target: { value: 'Ticket to the Moon' },
-    });
-    fireEvent.change(getByTestId('input-value'), {
-      target: { value: '9.99' },
-    });
+    const typeInput = screen.getByRole('combobox') as HTMLSelectElement;
+    const descIpnut = screen.getByRole('textbox') as HTMLInputElement;
+    const valueInput = screen.getByRole('spinbutton') as HTMLInputElement;
+    const submitBtn = screen.getByRole('button');
 
-    fireEvent.click(getByTestId('submit-btn'));
+    // form is initialized correctly
+    expect(typeInput.value).toBe('income');
+    expect(descIpnut.value).toBe('');
+    expect(valueInput.value).toBe('');
+    expect(submitBtn).toHaveAttribute('disabled');
 
+    // user fills out the form and submits it
+    fireEvent.change(typeInput, { target: { value: 'expense' } });
+    fireEvent.change(descIpnut, { target: { value: 'Ticket to the Moon' } });
+    fireEvent.change(valueInput, { target: { value: '9.99' } });
+    fireEvent.click(submitBtn);
+
+    // `onSubmit` should be called with the values from the form
     expect(onSubmit).toBeCalledWith({
       type: 'expense',
       description: 'Ticket to the Moon',
       value: 9.99,
     });
-  });
 
-  it('cleans up the inputs', () => {
-    const onSubmit = jest.fn();
-
-    const { getByTestId } = render(<Form onSubmit={onSubmit} />);
-
-    const typeInput = getByTestId('select-type') as HTMLInputElement;
-    const descriptionInput = getByTestId(
-      'input-description'
-    ) as HTMLInputElement;
-    const valueInput = getByTestId('input-value') as HTMLInputElement;
-
-    fireEvent.change(typeInput, {
-      target: { value: 'expense' },
-    });
-    fireEvent.change(descriptionInput, {
-      target: { value: 'Ticket to the Moon' },
-    });
-    fireEvent.change(valueInput, {
-      target: { value: '9.99' },
-    });
-
-    fireEvent.click(getByTestId('submit-btn'));
-
+    // form should be reset after submitting
     expect(typeInput.value).toBe('expense');
-    expect(descriptionInput.value).toBe('');
+    expect(descIpnut.value).toBe('');
     expect(valueInput.value).toBe('');
+    expect(submitBtn).toHaveAttribute('disabled');
+
+    // description input should have focus
+    expect(descIpnut).toHaveFocus();
   });
 
-  it('focus description input after submitting the form', async () => {
+  it(`doesn't call onSubmit when ref.current is null`, () => {
+    jest.spyOn(React, 'useRef').mockReturnValue({
+      get current() {
+        return null;
+      },
+      set current(_) {},
+    });
     const onSubmit = jest.fn();
 
-    const { getByTestId } = render(<Form onSubmit={onSubmit} />);
+    render(<Form onSubmit={onSubmit} />);
 
-    const typeInput = getByTestId('select-type') as HTMLInputElement;
-    const descriptionInput = getByTestId(
-      'input-description'
-    ) as HTMLInputElement;
-    const valueInput = getByTestId('input-value') as HTMLInputElement;
+    fireEvent.submit(screen.getByTestId('form'));
 
-    fireEvent.change(typeInput, {
-      target: { value: 'expense' },
-    });
-    fireEvent.change(descriptionInput, {
-      target: { value: 'Ticket to the Moon' },
-    });
-    fireEvent.change(valueInput, {
-      target: { value: '9.99' },
-    });
-
-    fireEvent.click(getByTestId('submit-btn'));
-    
-    expect(document.activeElement).toBe(descriptionInput);
+    expect(onSubmit).not.toBeCalled();
   });
-
-  // it('does nothing when ref does not exist', () => {
-  //   jest.doMock('react', () => {
-  //     const originReact = jest.requireActual('react');
-  //     const mUseRef = jest.fn().mockImplementation(() => ({current: null}));
-  //     return {
-  //       ...originReact,
-  //       useRef: mUseRef,
-  //     };
-  //   });
-
-  //   const onSubmit = jest.fn();
-
-  //   const { getByTestId } = render(<Form onSubmit={onSubmit} />);
-
-  //   const typeInput = getByTestId('select-type') as HTMLInputElement;
-  //   const descriptionInput = getByTestId(
-  //     'input-description'
-  //   ) as HTMLInputElement;
-  //   const valueInput = getByTestId('input-value') as HTMLInputElement;
-
-  //   fireEvent.change(typeInput, {
-  //     target: { value: 'expense' },
-  //   });
-  //   fireEvent.change(descriptionInput, {
-  //     target: { value: 'Ticket to the Moon' },
-  //   });
-  //   fireEvent.change(valueInput, {
-  //     target: { value: '9.99' },
-  //   });
-
-  //   fireEvent.click(getByTestId('submit-btn'));
-
-  //   expect(typeInput.value).toBe('expense');
-  //   expect(descriptionInput.value).toBe('');
-  //   expect(valueInput.value).toBe('');
-  //   expect(descriptionInput).not.toHaveFocus();
-  // });
 });
-

@@ -3,63 +3,71 @@ import { BsPlusCircle as PlusIcon } from 'react-icons/bs';
 import { TransactionType } from 'types';
 import './form.scss';
 
-type Props = {
+type FormProps = {
   onSubmit: ({ type, description, value }: TransactionType) => void;
 };
 
-function Form({ onSubmit }: Props) {
-  const descriptionRef = React.useRef<HTMLInputElement>(null);
-
+function Form({ onSubmit }: FormProps) {
+  const descriptionRef = React.useRef<HTMLInputElement | null>(null);
   const [type, setType] = React.useState('income');
   const [description, setDescription] = React.useState('');
   const [value, setValue] = React.useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!descriptionRef.current) return;
 
     // Submit the form
     onSubmit({ type, description, value: Number(value) } as TransactionType);
 
-    // Reset form values
+    // Reset form values and set focus on description
     setDescription('');
     setValue('');
-
-    // Focus on description input
-    if (descriptionRef?.current) {
-      descriptionRef.current.focus();
-    }
+    descriptionRef.current.focus();
   };
 
+  const isButtonDisabled = description === '' || value === '';
+
   return (
-    <form className="add-form" onSubmit={handleSubmit}>
+    <form data-testid="form" className="add-form" onSubmit={handleSubmit}>
       <select
-        data-testid="select-type"
+        aria-label="select type"
         className="form-control type"
         value={type}
-        onChange={(e) => setType(e.target.value)}
+        onChange={(e) => setType(e.currentTarget.value)}
       >
-        <option value="income">➕</option>
-        <option value="expense">➖</option>
+        <option aria-label="income" value="income">
+          ➕
+        </option>
+        <option aria-label="expense" value="expense">
+          ➖
+        </option>
       </select>
       <input
-        data-testid="input-description"
         type="text"
         className="form-control description"
         placeholder="Add description"
         value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        onChange={(e) => setDescription(e.currentTarget.value)}
         ref={descriptionRef}
+        required
       />
       <input
-        data-testid="input-value"
         type="number"
         className="form-control value"
         placeholder="Value"
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => setValue(e.currentTarget.value)}
+        required
       />
 
-      <button data-testid="submit-btn" type="submit" className="btn submit-btn">
+      <button
+        aria-label="submit"
+        type="submit"
+        className="btn submit-btn"
+        disabled={isButtonDisabled}
+      >
         <PlusIcon />
       </button>
     </form>
