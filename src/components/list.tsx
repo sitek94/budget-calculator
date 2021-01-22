@@ -6,15 +6,16 @@ import './list.scss';
 type Props = {
   list: TransactionType[];
   type: 'income' | 'expenses';
-  budget?: number;
+  income?: number;
+  onDeleteClick: (id: TransactionType['id']) => void;
 };
 
-function List({ list, type, budget }: Props) {
-  // Render `percentage` if there is `budget` prop
+function List({ list, type, income, onDeleteClick }: Props) {
+  // Render `percentage` if there is `income` prop
   const renderPercentage = (value: number) =>
-    budget !== undefined ? (
+    income !== undefined ? (
       <div data-testid={`test-${value}`} className="percentage">
-        {budget === 0 ? '---' : percentFormat(value / budget)}
+        {income === 0 ? '---' : percentFormat(value / income)}
       </div>
     ) : null;
 
@@ -30,11 +31,14 @@ function List({ list, type, budget }: Props) {
     <ul className="list">
       {list.map(({ id, description, value }) => (
         <li key={id} className="item">
-          <div>{description}</div>
+          <div className="description">{description}</div>
           <div className="right-box">
             {renderValue(value)}
             {renderPercentage(value)}
-            <button className="btn delete-btn">
+            <button
+              className="btn delete-btn"
+              onClick={() => onDeleteClick(id)}
+            >
               <CrossIcon />
             </button>
           </div>

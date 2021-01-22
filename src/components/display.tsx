@@ -12,7 +12,7 @@ function Display({ budget, income, expenses }: Props) {
   const year = new Date().getFullYear();
 
   const budgetSign = budget > 0 ? '+ ' : budget < 0 ? '- ' : '';
-  const percentage = budget > 0 ? percentFormat(expenses / budget) : null;
+  const percentage = budget > 0 ? percentFormat(expenses / income) : null;
 
   return (
     <div className="display">
