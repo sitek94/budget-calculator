@@ -29,6 +29,7 @@
 
   /* VALUE */
   .value {
+    color: var(--color);
     margin-right: 1rem;
     transition: transform 300ms;
   }
@@ -37,6 +38,10 @@
   .delete-btn {
     font-size: 1.9rem;
     display: none;
+
+    svg {
+      fill: var(--color);
+    }
 
     &:active {
       transform: translateY(2px);

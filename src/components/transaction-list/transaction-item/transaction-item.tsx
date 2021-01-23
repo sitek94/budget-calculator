@@ -11,7 +11,7 @@ function TransactionItem({
   onDeleteClick,
 }: TransactionItemProps) {
   return (
-    <li className="transaction-item">
+    <li className={`transaction-item ${type}`}>
       <div className="description">{description}</div>
 
       <div className="value">
