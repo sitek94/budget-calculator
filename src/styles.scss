@@ -17,7 +17,6 @@
 /* ================================= */
 /* GENERAL */
 /* ================================= */
-
 * {
   margin: 0;
   padding: 0;
@@ -33,6 +32,23 @@ html {
 
 body {
   font-size: 1.6rem;
+}
+
+/* ================================= */
+/* REUSABLES */
+/* ================================= */
+.income {
+  --color: var(--green);
+  --color-rgb: var(--green-rgb);
+}
+
+.expenses {
+  --color: var(--red);
+  --color-rgb: var(--red-rgb);
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 .btn {
