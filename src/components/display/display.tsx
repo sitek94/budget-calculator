@@ -50,7 +50,10 @@ function Income({ value }: { value: IncomeType }) {
   return (
     <div className="income">
       <div className="text">Income</div>
-      <div className="value">{currencyFormat(value)}</div>
+      <div className="value">
+        {value === 0 ? '' : '+ '}
+        {currencyFormat(value)}
+      </div>
       <div className="percentage">&nbsp;</div>
     </div>
   );
@@ -67,7 +70,10 @@ function Expenses({
   return (
     <div className="expenses">
       <div className="text">Expenses</div>
-      <div className="value">- {currencyFormat(value)}</div>
+      <div className="value">
+        {value === 0 ? '' : '- '}
+        {currencyFormat(value)}
+      </div>
       <div className="percentage">{percentFormat(percentage)}</div>
     </div>
   );

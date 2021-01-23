@@ -20,7 +20,6 @@ describe('<Display>', () => {
       expect(screen.getByText('$0.00')).toBeInTheDocument();
       expect(screen.getByText('+ $500.00')).toBeInTheDocument();
       expect(screen.getByText('- $500.00')).toBeInTheDocument();
-      expect(screen.getByText(/---/)).toBeInTheDocument();
     });
   });
 
@@ -31,7 +30,6 @@ describe('<Display>', () => {
       expect(screen.getByText('- $250.00')).toBeInTheDocument();
       expect(screen.getByText('+ $250.00')).toBeInTheDocument();
       expect(screen.getByText('- $500.00')).toBeInTheDocument();
-      expect(screen.getByText(/---/)).toBeInTheDocument();
     });
   });
 
@@ -39,10 +37,8 @@ describe('<Display>', () => {
     it('displays budget, income and expenses correctly', () => {
       render(<Display income={0} expenses={500} />);
 
-      expect(screen.getByText('- $500.00')).toBeInTheDocument();
       expect(screen.getByText('$0.00')).toBeInTheDocument();
-      expect(screen.getByText('- $500.00')).toBeInTheDocument();
-      expect(screen.getByText(/---/)).toBeInTheDocument();
+      expect(screen.getAllByText('- $500.00')).toHaveLength(2);
     });
   });
 });
