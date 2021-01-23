@@ -1,4 +1,4 @@
-import Display from 'components/display';
+import { Display } from './display';
 import { render, screen } from '@testing-library/react';
 
 describe('<Display>', () => {
@@ -30,6 +30,17 @@ describe('<Display>', () => {
 
       expect(screen.getByText('- $250.00')).toBeInTheDocument();
       expect(screen.getByText('+ $250.00')).toBeInTheDocument();
+      expect(screen.getByText('- $500.00')).toBeInTheDocument();
+      expect(screen.getByText(/---/)).toBeInTheDocument();
+    });
+  });
+
+  describe('when `income === 0`', () => {
+    it('displays budget, income and expenses correctly', () => {
+      render(<Display income={0} expenses={500} />);
+
+      expect(screen.getByText('- $500.00')).toBeInTheDocument();
+      expect(screen.getByText('$0.00')).toBeInTheDocument();
       expect(screen.getByText('- $500.00')).toBeInTheDocument();
       expect(screen.getByText(/---/)).toBeInTheDocument();
     });
