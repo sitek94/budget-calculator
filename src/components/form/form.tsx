@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { BsPlusCircle as PlusIcon } from 'react-icons/bs';
-import { TransactionType } from 'types';
+import { Transaction } from 'types';
 import { nanoid } from 'nanoid';
 import './form.scss';
 
 type FormProps = {
-  onSubmit: ({ type, description, value }: TransactionType) => void;
+  onSubmit: ({ type, description, value }: Transaction) => void;
 };
 
 function Form({ onSubmit }: FormProps) {
@@ -25,7 +25,7 @@ function Form({ onSubmit }: FormProps) {
       type,
       description,
       value: Number(value),
-    } as TransactionType);
+    } as Transaction);
 
     // Reset form values and set focus on description
     setDescription('');
