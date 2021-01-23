@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { TransactionList, TransactionType } from 'types';
+import { TransactionListType, Transaction } from 'types';
 import Layout, { Top, Middle, Bottom } from 'components/layout';
 import { Display } from 'components/display';
 import { Form } from 'components/form';
-import List from 'components/list';
+import { TransactionList } from 'components/transaction-list';
 import Label from 'components/label';
 import { sum } from 'utils';
 
-const initialTransactions: TransactionType[] = [
+const initialTransactions: Transaction[] = [
   { id: '1', type: 'income', description: 'Salary', value: 1000 },
   { id: '2', type: 'income', description: 'Lottery', value: 1000 },
   { id: '3', type: 'expense', description: 'Party', value: 500 },
@@ -15,14 +15,14 @@ const initialTransactions: TransactionType[] = [
 ];
 
 function App() {
-  const [transactions, setTransactions] = React.useState<TransactionList>(
+  const [transactions, setTransactions] = React.useState<TransactionListType>(
     initialTransactions
   );
 
-  const addTransaction = (newTransaction: TransactionType) => {
+  const addTransaction = (newTransaction: Transaction) => {
     setTransactions(transactions.concat(newTransaction));
   };
-  const removeTransaction = (transactionId: TransactionType['id']) => {
+  const removeTransaction = (transactionId: Transaction['id']) => {
     setTransactions(transactions.filter((t) => t.id !== transactionId));
   };
 
@@ -45,18 +45,15 @@ function App() {
       <Bottom>
         <div className="income">
           <Label>Income</Label>
-          <List
-            type="income"
+          <TransactionList
             list={incomeList}
             onDeleteClick={removeTransaction}
           />
         </div>
         <div className="expenses">
           <Label>Expenses</Label>
-          <List
-            type="expenses"
+          <TransactionList
             list={expensesList}
-            income={income}
             onDeleteClick={removeTransaction}
           />
         </div>
