@@ -10,6 +10,10 @@ describe('percentFormat', () => {
   it('correctly formats given number', () => {
     expect(percentFormat(0.75)).toBe(`75%`);
   });
+
+  it('correctly formats given number when `value <= 0`', () => {
+    expect(percentFormat(-1)).toBe(`---`);
+  });
 });
 
 describe('sum', () => {

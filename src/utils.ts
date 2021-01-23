@@ -6,6 +6,8 @@ export function currencyFormat(number: number) {
 }
 
 export function percentFormat(number: number) {
+  if (number <= 0) return '---';
+
   return Number(number).toLocaleString(undefined, {
     style: 'percent',
     minimumFractionDigits: 0,
