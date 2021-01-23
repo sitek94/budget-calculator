@@ -23,6 +23,7 @@
     padding: 1.2rem;
     border-radius: var(--border-radius);
     font-size: 1.8rem;
+    background-color: rgba(var(--color-rgb), 0.8);
 
     .text {
       flex: 1;
@@ -38,18 +39,5 @@
       background-color: rgba(var(--color-rgb), 0.2);
       text-align: center;
     }
-  }
-
-  /* COLORS AND PERCENTAGE VISIBILITY */
-  .income {
-    background-color: rgba(var(--green-rgb), 0.8);
-
-    .percentage {
-      visibility: hidden;
-    }
-  }
-
-  .expenses {
-    background-color: rgba(var(--red-rgb), 0.8);
   }
 }

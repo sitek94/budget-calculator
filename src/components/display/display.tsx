@@ -54,7 +54,7 @@ function Income({ value }: { value: IncomeType }) {
         {value === 0 ? '' : '+ '}
         {currencyFormat(value)}
       </div>
-      <div className="percentage">&nbsp;</div>
+      <div className="percentage hidden">&nbsp;</div>
     </div>
   );
 }
