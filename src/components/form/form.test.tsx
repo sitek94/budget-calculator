@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Form from 'components/form';
+import { Form } from './form';
 
 jest.mock('nanoid', () => ({
   nanoid: () => {

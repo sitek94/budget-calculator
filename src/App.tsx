@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TransactionList, TransactionType } from 'types';
 import Layout, { Top, Middle, Bottom } from 'components/layout';
 import { Display } from 'components/display';
-import Form from 'components/form';
+import { Form } from 'components/form';
 import List from 'components/list';
 import Label from 'components/label';
 import { sum } from 'utils';

@@ -80,4 +80,4 @@ function Form({ onSubmit }: FormProps) {
   );
 }
 
-export default Form;
+export { Form };
