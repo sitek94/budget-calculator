@@ -39,12 +39,17 @@
     font-size: 1.9rem;
     display: none;
 
+    @media only screen and (max-width: 768px) {
+      display: flex;
+    }
+    
     svg {
       fill: var(--color);
     }
-
+    
     &:active {
       transform: translateY(2px);
     }
+
   }
 }

@@ -4,6 +4,17 @@
   display: flex;
   justify-content: center;
 
+  @media (max-width: 500px) {
+    max-width: 30rem;
+    display: grid;
+    row-gap: 1rem;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      'description description description'
+      'type value submit';
+  }
+
   /* FORM CONTROL */
   .form-control {
     color: inherit;
@@ -21,18 +32,27 @@
   }
 
   .type {
+    grid-area: type;
     font-weight: bold;
   }
 
   .value {
-    width: 100px;
+    grid-area: value;
+    width: 10rem;
+
+    @media (max-width: 500px) {
+      width: 100%;
+    }
   }
+
   .description {
+    grid-area: description;
     flex: 1;
   }
 
   /* SUBMIT BUTTON */
   .submit-btn {
+    grid-area: submit;
     padding: 0 0.8rem;
     font-size: 3rem;
     border: 1px solid transparent;
